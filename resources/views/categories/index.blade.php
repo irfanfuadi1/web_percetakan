@@ -95,16 +95,19 @@
 
                                     <td>
 
+                                        {{-- DETAIL --}}
                                         <a href="{{ route('categories.show', $category) }}"
-                                            class="btn btn-sm btn-info text-white" title="Detail">
+                                            class="btn btn-sm btn-outline-info" title="Detail">
                                             <i class="bi bi-eye"></i>
                                         </a>
 
-                                        <a href="{{ route('categories.edit', $category) }}" class="btn btn-sm btn-warning"
+                                        {{-- EDIT --}}
+                                        <a href="{{ route('categories.edit', $category) }}" class="btn btn-sm btn-outline-warning"
                                             title="Edit">
                                             <i class="bi bi-pencil"></i>
                                         </a>
 
+                                        {{-- HAPUS --}}
                                         <form action="{{ route('categories.destroy', $category) }}" method="POST"
                                             class="d-inline"
                                             onsubmit="return confirm('Yakin ingin menghapus kategori ini?')">
@@ -112,7 +115,7 @@
                                             @csrf
                                             @method('DELETE')
 
-                                            <button type="submit" class="btn btn-sm btn-danger"
+                                            <button type="submit" class="btn btn-sm btn-outline-danger"
                                                 title="Hapus">
                                                 <i class="bi bi-trash"></i>
                                             </button>

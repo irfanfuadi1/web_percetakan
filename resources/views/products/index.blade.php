@@ -163,7 +163,7 @@
 
                                         {{-- Detail --}}
                                         <a href="{{ route('products.show', $product) }}"
-                                            class="btn btn-sm btn-info text-white" title="Detail">
+                                            class="btn btn-sm btn-outline-info" title="Detail">
 
                                             <i class="bi bi-eye"></i>
 
@@ -171,7 +171,7 @@
 
 
                                         {{-- Edit --}}
-                                        <a href="{{ route('products.edit', $product) }}" class="btn btn-sm btn-warning"
+                                        <a href="{{ route('products.edit', $product) }}" class="btn btn-sm btn-outline-warning"
                                             title="Edit">
 
                                             <i class="bi bi-pencil"></i>
@@ -187,7 +187,7 @@
 
                                             @method('DELETE')
 
-                                            <button type="submit" class="btn btn-sm btn-danger" title="Hapus">
+                                            <button type="submit" class="btn btn-sm btn-outline-danger" title="Hapus">
 
                                                 <i class="bi bi-trash"></i>
 

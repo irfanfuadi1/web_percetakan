@@ -70,12 +70,13 @@
 
                     <div class="d-flex gap-2">
 
-                        <a href="{{ route('categories.index') }}" class="btn btn-secondary">
+                        <a href="{{ route('categories.index') }}" class="btn btn-light border">
+                            <i class="bi bi-arrow-left me-1"></i>
                             Kembali
                         </a>
 
                         <button type="submit" class="btn btn-primary">
-                            <i class="bi bi-save"></i>
+                            <i class="bi bi-save me-1"></i>
                             Simpan
                         </button>
 

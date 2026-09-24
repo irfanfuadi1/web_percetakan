@@ -161,7 +161,8 @@
         </a>
 
         {{-- PELANGGAN --}}
-        <a href="#" class="sidebar-link">
+        <a href="{{ route('customers.index') }}"
+            class="sidebar-link {{ request()->routeIs('customers.*') ? 'active' : '' }}">
 
             <i class="bi bi-people"></i>
             <span>Pelanggan</span>
