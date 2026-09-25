@@ -101,9 +101,9 @@
 
                     </a>
 
-                    <a href="{{ route('suppliers.edit', $supplier) }}" class="btn btn-primary">
+                    <a href="{{ route('suppliers.edit', $supplier) }}" class="btn btn-warning">
 
-                        <i class="bi bi-pencil"></i>
+                        <i class="bi bi-pencil me-1"></i>
                         Edit
 
                     </a>

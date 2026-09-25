@@ -120,15 +120,16 @@
 
                 <div class="d-flex gap-2">
 
-                    <a href="{{ route('products.index') }}" class="btn btn-secondary">
+                    <a href="{{ route('products.index') }}" class="btn btn-light border">
 
+                        <i class="bi bi-arrow-left me-1"></i>
                         Kembali
 
                     </a>
 
                     <a href="{{ route('products.edit', $product) }}" class="btn btn-warning">
 
-                        <i class="bi bi-pencil"></i>
+                        <i class="bi bi-pencil me-1"></i>
 
                         Edit
 

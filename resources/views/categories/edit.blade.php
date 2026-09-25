@@ -72,6 +72,7 @@
                     <div class="d-flex gap-2">
 
                         <a href="{{ route('categories.index') }}" class="btn btn-light border">
+                            <i class="bi bi-arrow-left me-1"></i>
                             Kembali
                         </a>
 

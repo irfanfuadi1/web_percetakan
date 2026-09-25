@@ -6,5 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class CashAccount extends Model
 {
-    //
+    protected $fillable = [
+        'name',
+        'type',
+        'balance',
+        'description',
+    ];
+
+    protected $casts = [
+        'balance' => 'decimal:2',
+    ];
 }

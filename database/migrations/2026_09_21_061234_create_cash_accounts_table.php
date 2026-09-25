@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('cash_accounts', function (Blueprint $table) {
             $table->id();
+            $table->string('name', 150);
+            $table->enum('type', ['Kas', 'Bank', 'E-Wallet']);
+            $table->decimal('balance', 15, 2)->default(0);
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

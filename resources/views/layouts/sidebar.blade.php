@@ -178,11 +178,12 @@
 
         </a>
 
-        {{-- KAS / AKUN --}}
-        <a href="#" class="sidebar-link">
+        {{-- MASTER KAS / AKUN --}}
+        <a href="{{ route('cash-accounts.index') }}"
+        class="sidebar-link {{ request()->routeIs('cash-accounts.*') ? 'active' : '' }}">
 
             <i class="bi bi-cash-stack"></i>
-            <span>Kas / Akun</span>
+            <span>Master Kas</span>
 
         </a>
 
