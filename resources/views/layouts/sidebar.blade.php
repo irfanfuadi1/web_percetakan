@@ -95,7 +95,8 @@
             PRODUKSI
         </div>
 
-        <a href="#" class="sidebar-link">
+        <a href="{{ route('production-queues.index') }}"
+        class="sidebar-link {{ request()->routeIs('production-queues.*') ? 'active' : '' }}">
 
             <i class="bi bi-scissors"></i>
             <span>Antrian Produksi</span>
