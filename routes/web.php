@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CashAccountController;
+use App\Http\Controllers\InvoiceProjectController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductionQueueController;
@@ -22,6 +23,21 @@ Route::resource('categories', CategoryController::class);
 Route::resource('customers', CustomerController::class);
 
 Route::resource('cash-accounts', CashAccountController::class);
+
+Route::get(
+    '/invoice-project',
+    [InvoiceProjectController::class, 'index']
+)->name('invoice-project.index');
+
+Route::get(
+    '/invoice-project/{order}',
+    [InvoiceProjectController::class, 'show']
+)->name('invoice-project.show');
+
+Route::get(
+    '/invoice-project/{order}/print',
+    [InvoiceProjectController::class, 'print']
+)->name('invoice-project.print');
 
 Route::resource('orders', OrderController::class);
 

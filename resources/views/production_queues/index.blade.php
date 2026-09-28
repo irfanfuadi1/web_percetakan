@@ -244,7 +244,7 @@
     {{-- SUCCESS --}}
     @if(session('success'))
 
-        <div class="alert alert-success alert-dismissible fade show"
+        <div id="successAlert" class="alert alert-success alert-dismissible fade show"
              role="alert">
 
             <i class="bi bi-check-circle me-2"></i>
@@ -253,7 +253,8 @@
 
             <button type="button"
                     class="btn-close"
-                    data-bs-dismiss="alert">
+                    data-bs-dismiss="alert"
+                    aria-label="Close">
             </button>
 
         </div>
@@ -496,3 +497,18 @@
 </div>
 
 @endsection
+
+@push('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const successAlert = document.getElementById('successAlert');
+
+            if (successAlert) {
+                setTimeout(function() {
+                    const alert = bootstrap.Alert.getOrCreateInstance(successAlert);
+                    alert.close();
+                }, 5000);
+            }
+        });
+    </script>
+@endpush

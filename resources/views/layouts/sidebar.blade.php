@@ -117,7 +117,8 @@
 
         </a>
 
-        <a href="#" class="sidebar-link">
+        <a href="{{ route('invoice-project.index') }}"
+        class="sidebar-link {{ request()->routeIs('invoice-project.*') ? 'active' : '' }}">
 
             <i class="bi bi-receipt"></i>
             <span>Invoice Project</span>
