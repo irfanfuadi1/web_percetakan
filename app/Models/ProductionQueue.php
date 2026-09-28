@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ProductionQueue extends Model
 {
@@ -22,4 +23,13 @@ class ProductionQueue extends Model
         'invoice_date' => 'datetime',
         'progress' => 'integer',
     ];
+
+    public function order(): BelongsTo
+    {
+        return $this->belongsTo(
+            Order::class,
+            'invoice_code',
+            'invoice_code'
+        );
+    }
 }

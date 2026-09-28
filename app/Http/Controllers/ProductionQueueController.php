@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\ProductionQueue;
 use Illuminate\Support\Facades\Storage;
 
@@ -12,26 +13,41 @@ class ProductionQueueController extends Controller
      */
     public function index()
     {
-        $productionQueues = ProductionQueue::latest('invoice_date')->get();
+        $productionQueues = ProductionQueue::latest('invoice_date')
+            ->get();
 
         $totalQueues = $productionQueues->count();
 
-        return view('production_queues.index', compact(
-            'productionQueues',
-            'totalQueues'
-        ));
+        return view(
+            'production_queues.index',
+            compact(
+                'productionQueues',
+                'totalQueues'
+            )
+        );
     }
-
 
     /**
      * Menandai produksi sebagai selesai.
      */
-    public function complete(ProductionQueue $productionQueue)
-    {
+    public function complete(
+        ProductionQueue $productionQueue
+    ) {
         $productionQueue->update([
             'progress' => 100,
             'production_status' => 'Selesai',
         ]);
+
+        $order = Order::where(
+            'invoice_code',
+            $productionQueue->invoice_code
+        )->first();
+
+        if ($order) {
+            $order->update([
+                'status' => 'Selesai',
+            ]);
+        }
 
         return redirect()
             ->route('production-queues.index')
@@ -41,15 +57,17 @@ class ProductionQueueController extends Controller
             );
     }
 
-
     /**
      * Download file produksi.
      */
-    public function download(ProductionQueue $productionQueue)
-    {
+    public function download(
+        ProductionQueue $productionQueue
+    ) {
         if (
             !$productionQueue->file_path ||
-            !Storage::disk('public')->exists($productionQueue->file_path)
+            !Storage::disk('public')->exists(
+                $productionQueue->file_path
+            )
         ) {
             return redirect()
                 ->route('production-queues.index')
@@ -60,7 +78,8 @@ class ProductionQueueController extends Controller
         }
 
         $filePath = storage_path(
-            'app/public/' . $productionQueue->file_path
+            'app/public/' .
+                $productionQueue->file_path
         );
 
         return response()->download($filePath);

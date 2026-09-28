@@ -109,7 +109,8 @@
             TRANSAKSI
         </div>
 
-        <a href="#" class="sidebar-link">
+        <a href="{{ route('orders.index') }}"
+        class="sidebar-link {{ request()->routeIs('orders.*') ? 'active' : '' }}">
 
             <i class="bi bi-cart3"></i>
             <span>Pesanan</span>
