@@ -2,63 +2,124 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use Illuminate\Http\Request;
 
 class ReceivableController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Menampilkan daftar piutang.
      */
     public function index()
     {
-        //
+        $receivables = Order::with([
+            'customer',
+            'product',
+        ])
+            ->whereColumn('paid', '<', 'total')
+            ->where('status', '!=', 'Dibatalkan')
+            ->latest('order_date')
+            ->paginate(10);
+
+        $totalReceivable = Order::whereColumn(
+            'paid',
+            '<',
+            'total'
+        )
+            ->where('status', '!=', 'Dibatalkan')
+            ->selectRaw('SUM(total - paid) as total')
+            ->value('total') ?? 0;
+
+        $totalInvoices = Order::whereColumn(
+            'paid',
+            '<',
+            'total'
+        )
+            ->where('status', '!=', 'Dibatalkan')
+            ->count();
+
+        $totalCustomers = Order::whereColumn(
+            'paid',
+            '<',
+            'total'
+        )
+            ->where('status', '!=', 'Dibatalkan')
+            ->distinct('customer_id')
+            ->count('customer_id');
+
+        return view(
+            'receivables.index',
+            compact(
+                'receivables',
+                'totalReceivable',
+                'totalInvoices',
+                'totalCustomers'
+            )
+        );
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Menampilkan detail piutang.
      */
-    public function create()
+    public function show(Order $order)
     {
-        //
+        $order->load([
+            'customer',
+            'product',
+        ]);
+
+        return view(
+            'receivables.show',
+            compact('order')
+        );
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Memproses pembayaran piutang.
      */
-    public function store(Request $request)
+    public function pay(Request $request, Order $order)
     {
-        //
-    }
+        $request->validate([
+            'payment' => [
+                'required',
+                'numeric',
+                'min:0.01',
+            ],
+        ], [
+            'payment.required' =>
+                'Jumlah pembayaran wajib diisi.',
+            'payment.numeric' =>
+                'Jumlah pembayaran harus berupa angka.',
+            'payment.min' =>
+                'Jumlah pembayaran minimal Rp1.',
+        ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+        $remaining =
+            $order->total - $order->paid;
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
+        if ($request->payment > $remaining) {
+            return back()
+                ->withInput()
+                ->withErrors([
+                    'payment' =>
+                        'Pembayaran tidak boleh melebihi sisa piutang.',
+                ]);
+        }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+        $newPaid =
+            $order->paid + $request->payment;
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $order->update([
+            'paid' => $newPaid,
+        ]);
+
+        return redirect()
+            ->route(
+                'receivables.index'
+            )
+            ->with(
+                'success',
+                'Pembayaran piutang berhasil dicatat.'
+            );
     }
 }

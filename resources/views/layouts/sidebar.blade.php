@@ -125,14 +125,16 @@
 
         </a>
 
-        <a href="#" class="sidebar-link">
+        <a href="{{ route('receivables.index') }}"
+        class="sidebar-link {{ request()->routeIs('receivables.*') ? 'active' : '' }}">
 
             <i class="bi bi-wallet2"></i>
             <span>Manajemen Piutang</span>
 
         </a>
 
-        <a href="#" class="sidebar-link">
+        <a href="{{ route('purchases.index') }}"
+        class="sidebar-link {{ request()->routeIs('purchases.*') ? 'active' : '' }}">
 
             <i class="bi bi-bag"></i>
             <span>Pembelian</span>

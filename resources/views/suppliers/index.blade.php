@@ -89,7 +89,7 @@
 
                                             {{-- DETAIL --}}
                                             <a href="{{ route('suppliers.show', $supplier) }}"
-                                                class="btn btn-sm btn-outline-primary" title="Detail">
+                                                class="btn btn-sm btn-outline-info" title="Detail">
 
                                                 <i class="bi bi-eye"></i>
 

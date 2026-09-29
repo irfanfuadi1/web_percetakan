@@ -54,7 +54,7 @@
         if ($order->paid >= $order->total) {
             $paymentStatus = 'LUNAS';
         } elseif ($order->paid > 0) {
-            $paymentStatus = 'SEBAGIAN';
+            $paymentStatus = 'DP';
         } else {
             $paymentStatus = 'BELUM LUNAS';
         }
@@ -316,10 +316,10 @@
                                 LUNAS
                             </span>
 
-                        @elseif($paymentStatus === 'SEBAGIAN')
+                        @elseif($paymentStatus === 'DP')
 
                             <span class="badge bg-warning-subtle text-warning">
-                                SEBAGIAN
+                                DP
                             </span>
 
                         @else

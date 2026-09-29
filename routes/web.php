@@ -9,6 +9,8 @@ use App\Http\Controllers\InvoiceProjectController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductionQueueController;
+use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\ReceivableController;
 use App\Http\Controllers\SupplierController;
 
 Route::get('/', function () {
@@ -57,5 +59,25 @@ Route::get(
     '/production-queues',
     [ProductionQueueController::class, 'index']
 )->name('production-queues.index');
+
+Route::resource(
+    'purchases',
+    PurchaseController::class
+);
+
+Route::get(
+    '/receivables',
+    [ReceivableController::class, 'index']
+)->name('receivables.index');
+
+Route::get(
+    '/receivables/{order}',
+    [ReceivableController::class, 'show']
+)->name('receivables.show');
+
+Route::post(
+    '/receivables/{order}/pay',
+    [ReceivableController::class, 'pay']
+)->name('receivables.pay');
 
 Route::resource('suppliers', SupplierController::class);

@@ -13,6 +13,40 @@ return new class extends Migration
     {
         Schema::create('purchases', function (Blueprint $table) {
             $table->id();
+
+            $table->string('purchase_code', 50)->unique();
+
+            $table->dateTime('purchase_date');
+
+            $table->foreignId('supplier_id')
+                ->constrained('suppliers')
+                ->restrictOnDelete();
+
+            $table->foreignId('product_id')
+                ->constrained('products')
+                ->restrictOnDelete();
+
+            $table->decimal('quantity', 15, 2)
+                ->default(1);
+
+            $table->string('unit', 50);
+
+            $table->decimal('price', 15, 2)
+                ->default(0);
+
+            $table->decimal('total', 15, 2)
+                ->default(0);
+
+            $table->decimal('paid', 15, 2)
+                ->default(0);
+
+            $table->enum('status', [
+                'LUNAS',
+                'BELUM LUNAS',
+            ])->default('LUNAS');
+
+            $table->text('notes')->nullable();
+
             $table->timestamps();
         });
     }
