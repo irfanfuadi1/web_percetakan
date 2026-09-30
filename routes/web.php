@@ -18,6 +18,7 @@ use App\Http\Controllers\ReceivableController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\SalesReportController;
+use App\Http\Controllers\StockReportController;
 
 Route::get('/', function () {
     return redirect()->route('dashboard');
@@ -114,3 +115,8 @@ Route::get(
     '/reports/sales',
     [SalesReportController::class, 'index']
 )->name('reports.sales.index');
+
+Route::get(
+    '/reports/stock',
+    [StockReportController::class, 'index']
+)->name('reports.stock.index');

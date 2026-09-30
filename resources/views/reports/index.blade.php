@@ -284,7 +284,7 @@
                 {{-- STOK & ASET --}}
                 <div class="col-xl-3 col-md-6">
 
-                    <a href="#"
+                    <a href="{{ route('reports.stock.index') }}"
                        class="text-decoration-none">
 
                         <div class="card report-card border-0 shadow-sm h-100">

@@ -253,7 +253,8 @@
         </a>
 
         {{-- LAPORAN STOK --}}
-        <a href="#" class="sidebar-link">
+        <a href="{{ route('reports.stock.index') }}"
+        class="sidebar-link {{ request()->routeIs('reports.stock.*') ? 'active' : '' }}">
 
             <i class="bi bi-box-seam"></i>
             <span>Laporan Stok</span>
