@@ -21,6 +21,7 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\SalesReportController;
 use App\Http\Controllers\StockReportController;
+use App\Http\Controllers\UserManagementController;
 
 Route::get('/', function () {
     return redirect()->route('dashboard');
@@ -133,3 +134,8 @@ Route::get(
     '/reports/stock',
     [StockReportController::class, 'index']
 )->name('reports.stock.index');
+
+Route::resource(
+    'users',
+    UserManagementController::class
+);
