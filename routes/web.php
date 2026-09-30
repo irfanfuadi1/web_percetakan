@@ -14,7 +14,9 @@ use App\Http\Controllers\ProductionQueueController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\PurchaseReportController;
 use App\Http\Controllers\ProfitLossReportController;
+use App\Http\Controllers\PayableReportController;
 use App\Http\Controllers\ReceivableController;
+use App\Http\Controllers\ReceivableReportController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\SalesReportController;
@@ -85,6 +87,16 @@ Route::get(
 )->name('reports.purchases.index');
 
 Route::get(
+    '/reports/profit-loss',
+    [ProfitLossReportController::class, 'index']
+)->name('reports.profit-loss.index');
+
+Route::get(
+    '/reports/payables',
+    [PayableReportController::class, 'index']
+)->name('reports.payables.index');
+
+Route::get(
     '/receivables',
     [ReceivableController::class, 'index']
 )->name('receivables.index');
@@ -94,15 +106,16 @@ Route::get(
     [ReceivableController::class, 'show']
 )->name('receivables.show');
 
-Route::get(
-    '/reports/profit-loss',
-    [ProfitLossReportController::class, 'index']
-)->name('reports.profit-loss.index');
 
 Route::post(
     '/receivables/{order}/pay',
     [ReceivableController::class, 'pay']
 )->name('receivables.pay');
+
+Route::get(
+    '/reports/receivables',
+    [ReceivableReportController::class, 'index']
+)->name('reports.receivables.index');
 
 Route::get(
     '/reports',

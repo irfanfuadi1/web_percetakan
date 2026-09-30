@@ -115,7 +115,7 @@
                 {{-- PIUTANG --}}
                 <div class="col-xl-3 col-md-6">
 
-                    <a href="#"
+                    <a href="{{ route('reports.receivables.index') }}"
                        class="text-decoration-none">
 
                         <div class="card report-card border-0 shadow-sm h-100">
@@ -151,7 +151,7 @@
                 {{-- HUTANG --}}
                 <div class="col-xl-3 col-md-6">
 
-                    <a href="#"
+                    <a href="{{ route('reports.payables.index') }}"
                        class="text-decoration-none">
 
                         <div class="card report-card border-0 shadow-sm h-100">

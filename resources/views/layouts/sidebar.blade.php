@@ -262,7 +262,8 @@
         </a>
 
         {{-- LAPORAN PIUTANG --}}
-        <a href="#" class="sidebar-link">
+        <a href="{{ route('reports.receivables.index') }}"
+        class="sidebar-link {{ request()->routeIs('reports.receivables.*') ? 'active' : '' }}">
 
             <i class="bi bi-journal-arrow-down"></i>
             <span>Laporan Piutang</span>
@@ -270,7 +271,8 @@
         </a>
 
         {{-- LAPORAN HUTANG --}}
-        <a href="#" class="sidebar-link">
+        <a href="{{ route('reports.payables.index') }}"
+        class="sidebar-link {{ request()->routeIs('reports.payables.*') ? 'active' : '' }}">
 
             <i class="bi bi-journal-arrow-up"></i>
             <span>Laporan Hutang</span>
