@@ -5,13 +5,19 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CashAccountController;
+use App\Http\Controllers\CashFlowReportController;
+use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\InvoiceProjectController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductionQueueController;
 use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\PurchaseReportController;
+use App\Http\Controllers\ProfitLossReportController;
 use App\Http\Controllers\ReceivableController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\SalesReportController;
 
 Route::get('/', function () {
     return redirect()->route('dashboard');
@@ -25,6 +31,13 @@ Route::resource('categories', CategoryController::class);
 Route::resource('customers', CustomerController::class);
 
 Route::resource('cash-accounts', CashAccountController::class);
+
+Route::get(
+    '/reports/cash-flow',
+    [CashFlowReportController::class, 'index']
+)->name('reports.cash-flow.index');
+
+Route::resource('expenses', ExpenseController::class);
 
 Route::get(
     '/invoice-project',
@@ -66,6 +79,11 @@ Route::resource(
 );
 
 Route::get(
+    '/reports/purchases',
+    [PurchaseReportController::class, 'index']
+)->name('reports.purchases.index');
+
+Route::get(
     '/receivables',
     [ReceivableController::class, 'index']
 )->name('receivables.index');
@@ -75,9 +93,24 @@ Route::get(
     [ReceivableController::class, 'show']
 )->name('receivables.show');
 
+Route::get(
+    '/reports/profit-loss',
+    [ProfitLossReportController::class, 'index']
+)->name('reports.profit-loss.index');
+
 Route::post(
     '/receivables/{order}/pay',
     [ReceivableController::class, 'pay']
 )->name('receivables.pay');
 
+Route::get(
+    '/reports',
+    [ReportController::class, 'index']
+)->name('reports.index');
+
 Route::resource('suppliers', SupplierController::class);
+
+Route::get(
+    '/reports/sales',
+    [SalesReportController::class, 'index']
+)->name('reports.sales.index');

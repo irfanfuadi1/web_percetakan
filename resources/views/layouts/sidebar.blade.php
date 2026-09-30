@@ -96,7 +96,7 @@
         </div>
 
         <a href="{{ route('production-queues.index') }}"
-        class="sidebar-link {{ request()->routeIs('production-queues.*') ? 'active' : '' }}">
+            class="sidebar-link {{ request()->routeIs('production-queues.*') ? 'active' : '' }}">
 
             <i class="bi bi-scissors"></i>
             <span>Antrian Produksi</span>
@@ -109,8 +109,7 @@
             TRANSAKSI
         </div>
 
-        <a href="{{ route('orders.index') }}"
-        class="sidebar-link {{ request()->routeIs('orders.*') ? 'active' : '' }}">
+        <a href="{{ route('orders.index') }}" class="sidebar-link {{ request()->routeIs('orders.*') ? 'active' : '' }}">
 
             <i class="bi bi-cart3"></i>
             <span>Pesanan</span>
@@ -118,7 +117,7 @@
         </a>
 
         <a href="{{ route('invoice-project.index') }}"
-        class="sidebar-link {{ request()->routeIs('invoice-project.*') ? 'active' : '' }}">
+            class="sidebar-link {{ request()->routeIs('invoice-project.*') ? 'active' : '' }}">
 
             <i class="bi bi-receipt"></i>
             <span>Invoice Project</span>
@@ -126,7 +125,7 @@
         </a>
 
         <a href="{{ route('receivables.index') }}"
-        class="sidebar-link {{ request()->routeIs('receivables.*') ? 'active' : '' }}">
+            class="sidebar-link {{ request()->routeIs('receivables.*') ? 'active' : '' }}">
 
             <i class="bi bi-wallet2"></i>
             <span>Manajemen Piutang</span>
@@ -134,7 +133,7 @@
         </a>
 
         <a href="{{ route('purchases.index') }}"
-        class="sidebar-link {{ request()->routeIs('purchases.*') ? 'active' : '' }}">
+            class="sidebar-link {{ request()->routeIs('purchases.*') ? 'active' : '' }}">
 
             <i class="bi bi-bag"></i>
             <span>Pembelian</span>
@@ -185,10 +184,19 @@
 
         {{-- MASTER KAS / AKUN --}}
         <a href="{{ route('cash-accounts.index') }}"
-        class="sidebar-link {{ request()->routeIs('cash-accounts.*') ? 'active' : '' }}">
+            class="sidebar-link {{ request()->routeIs('cash-accounts.*') ? 'active' : '' }}">
 
             <i class="bi bi-cash-stack"></i>
             <span>Master Kas</span>
+
+        </a>
+
+        {{-- PENGELUARAN --}}
+        <a href="{{ route('expenses.index') }}"
+            class="sidebar-link {{ request()->routeIs('expenses.*') ? 'active' : '' }}">
+
+            <i class="bi bi-cash-coin"></i>
+            <span>Pengeluaran</span>
 
         </a>
 
@@ -198,20 +206,75 @@
             LAPORAN
         </div>
 
-        <a href="#" class="sidebar-link">
 
-            <i class="bi bi-cash-coin"></i>
-            <span>Pengeluaran</span>
+        {{-- PUSAT LAPORAN --}}
+        <a href="{{ route('reports.index') }}"
+            class="sidebar-link {{ request()->routeIs('reports.index') ? 'active' : '' }}">
 
-        </a>
-
-        <a href="#" class="sidebar-link">
-
-            <i class="bi bi-bar-chart"></i>
+            <i class="bi bi-grid"></i>
             <span>Pusat Laporan</span>
 
         </a>
 
+        {{-- LAPORAN PENJUALAN --}}
+        <a href="{{ route('reports.sales.index') }}"
+        class="sidebar-link {{ request()->routeIs('reports.sales.*') ? 'active' : '' }}">
+
+            <i class="bi bi-graph-up"></i>
+            <span>Laporan Penjualan</span>
+
+        </a>
+
+        {{-- LAPORAN PEMBELIAN --}}
+        <a href="{{ route('reports.purchases.index') }}"
+        class="sidebar-link {{ request()->routeIs('reports.purchases.*') ? 'active' : '' }}">
+
+            <i class="bi bi-bag"></i>
+            <span>Laporan Pembelian</span>
+
+        </a>
+
+        {{-- LAPORAN ARUS KAS --}}
+        <a href="{{ route('reports.cash-flow.index') }}"
+        class="sidebar-link {{ request()->routeIs('reports.cash-flow.*') ? 'active' : '' }}">
+
+            <i class="bi bi-wallet2"></i>
+            <span>Laporan Arus Kas</span>
+
+        </a>
+
+        {{-- LAPORAN LABA RUGI --}}
+        <a href="{{ route('reports.profit-loss.index') }}"
+        class="sidebar-link {{ request()->routeIs('reports.profit-loss.*') ? 'active' : '' }}">
+
+            <i class="bi bi-graph-up-arrow"></i>
+            <span>Laporan Laba Rugi</span>
+
+        </a>
+
+        {{-- LAPORAN STOK --}}
+        <a href="#" class="sidebar-link">
+
+            <i class="bi bi-box-seam"></i>
+            <span>Laporan Stok</span>
+
+        </a>
+
+        {{-- LAPORAN PIUTANG --}}
+        <a href="#" class="sidebar-link">
+
+            <i class="bi bi-journal-arrow-down"></i>
+            <span>Laporan Piutang</span>
+
+        </a>
+
+        {{-- LAPORAN HUTANG --}}
+        <a href="#" class="sidebar-link">
+
+            <i class="bi bi-journal-arrow-up"></i>
+            <span>Laporan Hutang</span>
+
+        </a>
     </div>
 
 </aside>
