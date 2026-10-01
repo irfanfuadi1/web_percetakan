@@ -166,8 +166,64 @@
 
             @include('layouts.navbar')
 
-            <main class="content-wrapper">
+            <main>
+
+                {{-- =====================================================
+        NOTIFIKASI BERHASIL
+    ====================================================== --}}
+
+                @if (session('success'))
+                    <div id="successAlert" class="alert alert-success alert-dismissible fade show shadow-sm mx-4 mt-3"
+                        role="alert">
+
+                        <i class="bi bi-check-circle-fill me-2"></i>
+
+                        {{ session('success') }}
+
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+                    </div>
+                @endif
+
+
+                {{-- =====================================================
+        NOTIFIKASI ERROR
+    ====================================================== --}}
+
+                @if (session('error'))
+                    <div id="errorAlert" class="alert alert-danger alert-dismissible fade show shadow-sm mx-4 mt-3"
+                        role="alert">
+
+                        <i class="bi bi-exclamation-circle-fill me-2"></i>
+
+                        {{ session('error') }}
+
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+                    </div>
+                @endif
+
+
+                {{-- =====================================================
+        VALIDATION ERROR
+    ====================================================== --}}
+
+                @if ($errors->any())
+                    <div id="validationAlert" class="alert alert-danger alert-dismissible fade show shadow-sm mx-4 mt-3"
+                        role="alert">
+
+                        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+
+                        {{ $errors->first() }}
+
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+                    </div>
+                @endif
+
+
                 @yield('content')
+
             </main>
 
         </div>
@@ -223,6 +279,50 @@
                     }
                 });
             }
+
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            const alerts = [
+                document.getElementById('successAlert'),
+                document.getElementById('errorAlert'),
+                document.getElementById('validationAlert')
+            ];
+
+
+            alerts.forEach(function(alertElement) {
+
+                if (!alertElement) {
+                    return;
+                }
+
+
+                setTimeout(function() {
+
+                    if (
+                        typeof bootstrap !== 'undefined' &&
+                        bootstrap.Alert
+                    ) {
+
+                        const alert =
+                            bootstrap.Alert.getOrCreateInstance(
+                                alertElement
+                            );
+
+                        alert.close();
+
+                    } else {
+
+                        alertElement.remove();
+
+                    }
+
+                }, 5000);
+
+            });
 
         });
     </script>
