@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\ActivityLogger;
 use App\Models\Customer;
 use App\Models\Order;
 use App\Models\Product;
@@ -157,6 +158,15 @@ class OrderController extends Controller
         unset($validated['file']);
 
         $order = Order::create($validated);
+
+        ActivityLogger::log(
+            'Create Order',
+            'Membuat Pesanan Baru #' .
+                $order->invoice_code .
+                ' (Total: Rp ' .
+                number_format($order->total, 0, ',', '.') .
+                ')'
+        );
 
         if (
             in_array($order->status, ['Menunggu', 'Diproses'])

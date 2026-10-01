@@ -293,7 +293,8 @@
 
         </a>
 
-        <a href="#" class="sidebar-link">
+        <a href="{{ route('activity-logs.index') }}"
+        class="sidebar-link {{ request()->routeIs('activity-logs.*') ? 'active' : '' }}">
 
             <i class="bi bi-clock-history"></i>
 

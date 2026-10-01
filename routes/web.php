@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ActivityLogController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CashAccountController;
@@ -29,6 +30,11 @@ Route::get('/', function () {
 
 Route::get('/dashboard', [DashboardController::class, 'index'])
     ->name('dashboard');
+
+Route::get(
+    '/activity-logs',
+    [ActivityLogController::class, 'index']
+)->name('activity-logs.index');
 
 Route::resource('categories', CategoryController::class);
 

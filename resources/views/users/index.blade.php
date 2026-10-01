@@ -79,7 +79,7 @@
                                 </th>
 
                                 <th>
-                                    NAMA LENGKAP
+                                    NAMA
                                 </th>
 
                                 <th>
