@@ -493,6 +493,28 @@
                 </li>
 
 
+                {{-- PENGATURAN --}}
+                <li>
+
+                    <a href="{{ route('settings.index') }}" class="dropdown-item">
+
+                        <i class="bi bi-gear me-2"></i>
+
+                        Pengaturan
+
+                    </a>
+
+                </li>
+
+
+                {{-- DIVIDER --}}
+                <li>
+
+                    <hr class="dropdown-divider">
+
+                </li>
+
+
                 {{-- LOGOUT --}}
                 <li>
 

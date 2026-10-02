@@ -24,6 +24,7 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\SalesReportController;
 use App\Http\Controllers\StockReportController;
+use App\Http\Controllers\StoreSettingController;
 use App\Http\Controllers\UserManagementController;
 
 
@@ -58,7 +59,6 @@ Route::middleware('guest')->group(function () {
         '/login',
         [AuthController::class, 'login']
     )->name('login.process');
-
 });
 
 
@@ -324,4 +324,13 @@ Route::middleware('auth')->group(function () {
         [PayableReportController::class, 'index']
     )->name('reports.payables.index');
 
+    Route::get(
+        '/settings',
+        [StoreSettingController::class, 'index']
+    )->name('settings.index');
+
+    Route::put(
+        '/settings',
+        [StoreSettingController::class, 'update']
+    )->name('settings.update');
 });
