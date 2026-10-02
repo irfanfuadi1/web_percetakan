@@ -1,7 +1,13 @@
 <style>
+    /* =========================================================
+       TOP NAVBAR
+    ========================================================== */
+
     .top-navbar {
         height: 70px;
-        background: #fff;
+
+        background: #ffffff;
+
         border-bottom: 1px solid #e9e9ef;
 
         display: flex;
@@ -9,17 +15,19 @@
         justify-content: flex-end;
 
         padding: 0 30px;
+
         gap: 15px;
 
         transition:
             background-color 0.3s ease,
-            border-color 0.3s ease;
+            border-color 0.3s ease,
+            color 0.3s ease;
     }
 
 
     /* =========================================================
        THEME BUTTON
-       ========================================================= */
+    ========================================================== */
 
     .btn-navbar {
         width: 38px;
@@ -33,9 +41,12 @@
         border-radius: 8px;
 
         color: #555;
+
         background: transparent;
 
-        transition: all 0.2s ease;
+        transition:
+            background-color 0.2s ease,
+            color 0.2s ease;
     }
 
 
@@ -47,12 +58,16 @@
 
     .btn-navbar i {
         font-size: 16px;
+
+        transition:
+            color 0.2s ease,
+            transform 0.2s ease;
     }
 
 
     /* =========================================================
-       USER
-       ========================================================= */
+       USER AREA
+    ========================================================== */
 
     .navbar-user {
         position: relative;
@@ -72,7 +87,9 @@
 
         border-radius: 8px;
 
-        transition: background-color 0.2s ease;
+        transition:
+            background-color 0.2s ease,
+            color 0.2s ease;
     }
 
 
@@ -81,12 +98,17 @@
     }
 
 
+    /* =========================================================
+       USER AVATAR
+    ========================================================== */
+
     .user-avatar {
         width: 34px;
         height: 34px;
 
         background: #665ce6;
-        color: #fff;
+
+        color: #ffffff;
 
         border-radius: 50%;
 
@@ -98,8 +120,14 @@
         font-size: 14px;
 
         text-transform: uppercase;
+
+        flex-shrink: 0;
     }
 
+
+    /* =========================================================
+       USER INFORMATION
+    ========================================================== */
 
     .navbar-user-info {
         display: flex;
@@ -111,41 +139,59 @@
 
     .navbar-user-name {
         font-weight: 600;
-        color: #333;
+
+        color: #333333;
+
+        transition: color 0.2s ease;
     }
 
 
     .navbar-user-role {
         font-size: 11px;
-        color: #888;
+
+        color: #888888;
 
         margin-top: 2px;
 
         text-transform: capitalize;
+
+        transition: color 0.2s ease;
     }
 
+
+    /* =========================================================
+       CHEVRON
+    ========================================================== */
 
     .navbar-user>.bi-chevron-down {
         font-size: 11px;
-        color: #777;
 
-        transition: transform 0.2s ease;
+        color: #777777;
+
+        transition:
+            transform 0.2s ease,
+            color 0.2s ease;
     }
 
 
-    .navbar-user.show>.bi-chevron-down {
+    /* Ketika dropdown terbuka */
+    .dropdown.show .navbar-user>.bi-chevron-down {
         transform: rotate(180deg);
     }
 
 
     /* =========================================================
        USER DROPDOWN
-       ========================================================= */
+    ========================================================== */
 
     .navbar-user-menu {
         min-width: 210px;
 
         padding: 8px;
+
+        margin-top: 8px !important;
+
+        background: #ffffff;
 
         border: 1px solid #e9e9ef;
 
@@ -153,8 +199,41 @@
 
         box-shadow:
             0 8px 25px rgba(0, 0, 0, 0.08);
+
+        transition:
+            background-color 0.3s ease,
+            border-color 0.3s ease,
+            box-shadow 0.3s ease;
     }
 
+
+    /* =========================================================
+       DROPDOWN USER INFO
+    ========================================================== */
+
+    .navbar-user-menu .user-menu-name {
+        color: #333333;
+
+        font-size: 15px;
+
+        font-weight: 600;
+
+        transition: color 0.2s ease;
+    }
+
+
+    .navbar-user-menu .user-menu-username {
+        color: #888888;
+
+        font-size: 13px;
+
+        transition: color 0.2s ease;
+    }
+
+
+    /* =========================================================
+       DROPDOWN ITEM
+    ========================================================== */
 
     .navbar-user-menu .dropdown-item {
         border-radius: 7px;
@@ -162,39 +241,77 @@
         padding: 9px 10px;
 
         font-size: 13px;
+
+        color: #444444;
+
+        transition:
+            background-color 0.2s ease,
+            color 0.2s ease;
     }
 
 
     .navbar-user-menu .dropdown-item:hover {
         background: #f5f5fa;
+
+        color: #333333;
     }
 
 
-    .navbar-user-menu .dropdown-divider {
-        margin: 6px 0;
+    .navbar-user-menu .dropdown-item.text-danger {
+        color: #dc3545 !important;
+    }
+
+
+    .navbar-user-menu .dropdown-item.text-danger:hover {
+        background: #fff1f2;
+
+        color: #dc3545 !important;
     }
 
 
     /* =========================================================
-       DARK MODE
-       ========================================================= */
+       DROPDOWN DIVIDER
+    ========================================================== */
 
-    body.dark-mode .top-navbar {
-        background: #1e1e1e;
-        border-bottom-color: #333;
+    .navbar-user-menu .dropdown-divider {
+        margin: 6px 0;
+
+        border-top-color: #e9e9ef;
+
+        opacity: 1;
     }
 
 
+    /* =========================================================
+       DARK MODE - NAVBAR
+    ========================================================== */
+
+    body.dark-mode .top-navbar {
+        background: #1e1e1e;
+
+        border-bottom-color: #333333;
+    }
+
+
+    /* =========================================================
+       DARK MODE - THEME BUTTON
+    ========================================================== */
+
     body.dark-mode .btn-navbar {
-        color: #ddd;
+        color: #dddddd;
     }
 
 
     body.dark-mode .btn-navbar:hover {
         background: #2b2b2b;
+
         color: #8b83ff;
     }
 
+
+    /* =========================================================
+       DARK MODE - USER
+    ========================================================== */
 
     body.dark-mode .navbar-user {
         color: #e9e9e9;
@@ -212,39 +329,76 @@
 
 
     body.dark-mode .navbar-user-role {
-        color: #aaa;
+        color: #aaaaaa;
     }
 
 
     body.dark-mode .navbar-user>.bi-chevron-down {
-        color: #aaa;
+        color: #aaaaaa;
     }
 
+
+    /* =========================================================
+       DARK MODE - DROPDOWN
+    ========================================================== */
 
     body.dark-mode .navbar-user-menu {
         background: #252525;
+
         border-color: #3a3a3a;
+
+        box-shadow:
+            0 10px 30px rgba(0, 0, 0, 0.35);
     }
 
 
+    /* Nama Mikel */
+    body.dark-mode .navbar-user-menu .user-menu-name {
+        color: #f1f1f1;
+    }
+
+
+    /* @admin */
+    body.dark-mode .navbar-user-menu .user-menu-username {
+        color: #aaaaaa;
+    }
+
+
+    /* Semua dropdown item */
     body.dark-mode .navbar-user-menu .dropdown-item {
         color: #e9e9e9;
     }
 
 
     body.dark-mode .navbar-user-menu .dropdown-item:hover {
-        background: #333;
+        background: #333333;
+
+        color: #ffffff;
     }
 
 
+    /* Logout */
+    body.dark-mode .navbar-user-menu .dropdown-item.text-danger {
+        color: #ff5c6c !important;
+    }
+
+
+    body.dark-mode .navbar-user-menu .dropdown-item.text-danger:hover {
+        background: #3a2528;
+
+        color: #ff6b78 !important;
+    }
+
+
+    /* Divider */
     body.dark-mode .navbar-user-menu .dropdown-divider {
-        border-color: #3a3a3a;
+        border-top-color: #3a3a3a;
     }
 
 
     /* =========================================================
        MOBILE
-       ========================================================= */
+    ========================================================== */
 
     @media (max-width: 576px) {
 
@@ -263,17 +417,14 @@
 
 <header class="top-navbar">
 
-
     {{-- =====================================================
         DARK / LIGHT MODE
+        JS THEME TETAP DIATUR OLEH app.blade.php
     ====================================================== --}}
 
     <button type="button" class="btn btn-navbar" id="themeToggle" title="Ubah Tema" aria-label="Ubah Tema">
-
         <i class="bi bi-moon-fill" id="themeIcon"></i>
-
     </button>
-
 
 
     {{-- =====================================================
@@ -286,12 +437,9 @@
 
             <div class="navbar-user" data-bs-toggle="dropdown" aria-expanded="false">
 
-
                 {{-- AVATAR --}}
                 <div class="user-avatar">
-
                     {{ strtoupper(substr(Auth::user()->name ?: Auth::user()->username, 0, 1)) }}
-
                 </div>
 
 
@@ -299,56 +447,49 @@
                 <div class="navbar-user-info">
 
                     <span class="navbar-user-name">
-
                         {{ Auth::user()->name ?: Auth::user()->username }}
-
                     </span>
 
-
                     <span class="navbar-user-role">
-
                         {{ ucfirst(Auth::user()->role) }}
-
                     </span>
 
                 </div>
 
 
+                {{-- CHEVRON --}}
                 <i class="bi bi-chevron-down"></i>
 
             </div>
 
 
-            {{-- USER MENU --}}
-            <ul class="dropdown-menu dropdown-menu-end navbar-user-menu">
+            {{-- =================================================
+                USER DROPDOWN
+            ================================================== --}}
 
+            <ul class="dropdown-menu dropdown-menu-end navbar-user-menu">
 
                 {{-- INFORMASI USER --}}
                 <li>
 
                     <div class="px-2 py-2">
 
-                        <div class="fw-semibold">
-
+                        <div class="user-menu-name">
                             {{ Auth::user()->name ?: Auth::user()->username }}
-
                         </div>
 
-                        <small class="text-muted">
-
+                        <div class="user-menu-username mt-1">
                             {{ '@' . Auth::user()->username }}
-
-                        </small>
+                        </div>
 
                     </div>
 
                 </li>
 
 
+                {{-- DIVIDER --}}
                 <li>
-
                     <hr class="dropdown-divider">
-
                 </li>
 
 
@@ -379,102 +520,6 @@
 
 </header>
 
-
-<script>
-    document.addEventListener(
-        'DOMContentLoaded',
-        function() {
-
-            const themeToggle =
-                document.getElementById('themeToggle');
-
-            const themeIcon =
-                document.getElementById('themeIcon');
-
-
-            if (!themeToggle || !themeIcon) {
-                return;
-            }
-
-
-            /*
-            |--------------------------------------------------------------------------
-            | LOAD THEME
-            |--------------------------------------------------------------------------
-            */
-
-            const savedTheme =
-                localStorage.getItem('theme');
-
-
-            if (savedTheme === 'dark') {
-
-                document.body.classList.add('dark-mode');
-
-                themeIcon.classList.remove('bi-moon-fill');
-
-                themeIcon.classList.add('bi-sun-fill');
-
-            }
-
-
-            /*
-            |--------------------------------------------------------------------------
-            | TOGGLE THEME
-            |--------------------------------------------------------------------------
-            */
-
-            themeToggle.addEventListener(
-                'click',
-                function() {
-
-                    document.body.classList.toggle('dark-mode');
-
-
-                    const isDark =
-                        document.body.classList.contains(
-                            'dark-mode'
-                        );
-
-
-                    if (isDark) {
-
-                        localStorage.setItem(
-                            'theme',
-                            'dark'
-                        );
-
-                        themeIcon.classList.remove(
-                            'bi-moon-fill'
-                        );
-
-                        themeIcon.classList.add(
-                            'bi-sun-fill'
-                        );
-
-                    } else {
-
-                        localStorage.setItem(
-                            'theme',
-                            'light'
-                        );
-
-                        themeIcon.classList.remove(
-                            'bi-sun-fill'
-                        );
-
-                        themeIcon.classList.add(
-                            'bi-moon-fill'
-                        );
-
-                    }
-
-                }
-            );
-
-        }
-    );
-</script>
 
 <script>
     function confirmLogout() {
