@@ -4,9 +4,16 @@
 
 @section('content')
 
+<div class="container-fluid">
+
+    {{-- =====================================================
+        HEADER
+    ====================================================== --}}
+
     <div class="d-flex justify-content-between align-items-center mb-4">
 
         <div>
+
             <h4 class="fw-bold mb-1">
                 Dashboard
             </h4>
@@ -14,16 +21,26 @@
             <p class="text-muted mb-0 small">
                 Ringkasan aktivitas percetakan hari ini
             </p>
+
         </div>
+
 
         <div class="d-flex gap-2">
 
-            <button class="btn btn-danger btn-sm">
+            <button
+                type="button"
+                class="btn btn-danger btn-sm"
+                disabled
+            >
                 <i class="bi bi-power me-1"></i>
                 Tutup Kasir
             </button>
 
-            <a href="#" class="btn btn-primary btn-sm">
+
+            <a
+                href="{{ route('orders.create') }}"
+                class="btn btn-primary btn-sm"
+            >
                 <i class="bi bi-plus-lg me-1"></i>
                 Pesanan Baru
             </a>
@@ -33,9 +50,14 @@
     </div>
 
 
-    {{-- STATISTIK --}}
+    {{-- =====================================================
+        STATISTIK
+    ====================================================== --}}
+
     <div class="row g-3 mb-4">
 
+
+        {{-- PELANGGAN BARU --}}
         <div class="col-xl-3 col-md-6">
 
             <div class="card border-0 shadow-sm h-100">
@@ -45,21 +67,26 @@
                     <div class="d-flex justify-content-between">
 
                         <div>
+
                             <p class="text-muted small mb-1">
                                 Pelanggan Baru
                             </p>
 
                             <h4 class="fw-bold mb-0">
-                                2
+                                {{ number_format($newCustomersToday, 0, ',', '.') }}
                             </h4>
 
                             <small class="text-muted">
                                 Hari ini
                             </small>
+
                         </div>
 
+
                         <div class="text-primary fs-3">
+
                             <i class="bi bi-people"></i>
+
                         </div>
 
                     </div>
@@ -71,6 +98,7 @@
         </div>
 
 
+        {{-- PESANAN BARU --}}
         <div class="col-xl-3 col-md-6">
 
             <div class="card border-0 shadow-sm h-100">
@@ -86,7 +114,7 @@
                             </p>
 
                             <h4 class="fw-bold mb-0">
-                                7
+                                {{ number_format($newOrdersToday, 0, ',', '.') }}
                             </h4>
 
                             <small class="text-muted">
@@ -95,8 +123,11 @@
 
                         </div>
 
+
                         <div class="text-success fs-3">
+
                             <i class="bi bi-cart-check"></i>
+
                         </div>
 
                     </div>
@@ -108,6 +139,7 @@
         </div>
 
 
+        {{-- PENJUALAN --}}
         <div class="col-xl-3 col-md-6">
 
             <div class="card border-0 shadow-sm h-100">
@@ -123,7 +155,7 @@
                             </p>
 
                             <h4 class="fw-bold mb-0">
-                                Rp 1.475.000
+                                Rp {{ number_format($monthlySales, 0, ',', '.') }}
                             </h4>
 
                             <small class="text-muted">
@@ -132,8 +164,11 @@
 
                         </div>
 
+
                         <div class="text-warning fs-3">
+
                             <i class="bi bi-currency-dollar"></i>
+
                         </div>
 
                     </div>
@@ -145,6 +180,7 @@
         </div>
 
 
+        {{-- TOTAL PELANGGAN --}}
         <div class="col-xl-3 col-md-6">
 
             <div class="card border-0 shadow-sm h-100">
@@ -160,7 +196,7 @@
                             </p>
 
                             <h4 class="fw-bold mb-0">
-                                25
+                                {{ number_format($totalCustomers, 0, ',', '.') }}
                             </h4>
 
                             <small class="text-muted">
@@ -169,8 +205,11 @@
 
                         </div>
 
+
                         <div class="text-info fs-3">
+
                             <i class="bi bi-person-vcard"></i>
+
                         </div>
 
                     </div>
@@ -184,7 +223,10 @@
     </div>
 
 
-    {{-- STATUS PESANAN --}}
+    {{-- =====================================================
+        STATUS PESANAN
+    ====================================================== --}}
+
     <div class="card border-0 shadow-sm mb-4">
 
         <div class="card-body">
@@ -193,8 +235,11 @@
                 Status Pesanan
             </h6>
 
+
             <div class="row g-3">
 
+
+                {{-- DIPROSES --}}
                 <div class="col-md-3">
 
                     <div class="text-center border rounded p-3">
@@ -204,13 +249,15 @@
                         </small>
 
                         <h4 class="text-primary fw-bold mt-2 mb-0">
-                            3
+                            {{ number_format($processingOrders, 0, ',', '.') }}
                         </h4>
 
                     </div>
 
                 </div>
 
+
+                {{-- SELESAI --}}
                 <div class="col-md-3">
 
                     <div class="text-center border rounded p-3">
@@ -220,13 +267,15 @@
                         </small>
 
                         <h4 class="text-success fw-bold mt-2 mb-0">
-                            5
+                            {{ number_format($completedOrders, 0, ',', '.') }}
                         </h4>
 
                     </div>
 
                 </div>
 
+
+                {{-- BELUM BAYAR --}}
                 <div class="col-md-3">
 
                     <div class="text-center border rounded p-3">
@@ -236,13 +285,15 @@
                         </small>
 
                         <h4 class="text-danger fw-bold mt-2 mb-0">
-                            1
+                            {{ number_format($unpaidOrders, 0, ',', '.') }}
                         </h4>
 
                     </div>
 
                 </div>
 
+
+                {{-- LUNAS --}}
                 <div class="col-md-3">
 
                     <div class="text-center border rounded p-3">
@@ -252,7 +303,7 @@
                         </small>
 
                         <h4 class="text-success fw-bold mt-2 mb-0">
-                            4
+                            {{ number_format($paidOrders, 0, ',', '.') }}
                         </h4>
 
                     </div>
@@ -266,9 +317,17 @@
     </div>
 
 
+    {{-- =====================================================
+        BOTTOM CONTENT
+    ====================================================== --}}
+
     <div class="row g-4">
 
-        {{-- TRANSAKSI --}}
+
+        {{-- =================================================
+            TRANSAKSI TERAKHIR
+        ================================================== --}}
+
         <div class="col-lg-8">
 
             <div class="card border-0 shadow-sm">
@@ -278,14 +337,23 @@
                     <div class="d-flex justify-content-between mb-3">
 
                         <h6 class="fw-bold mb-0">
+
+                            <i class="bi bi-clock-history me-1"></i>
+
                             Transaksi Terakhir
+
                         </h6>
 
-                        <a href="#" class="small text-primary">
+
+                        <a
+                            href="{{ route('orders.index') }}"
+                            class="small text-primary text-decoration-none"
+                        >
                             Lihat Semua
                         </a>
 
                     </div>
+
 
                     <div class="table-responsive">
 
@@ -295,82 +363,144 @@
 
                                 <tr>
 
-                                    <th>No. Invoice</th>
-                                    <th>Pelanggan</th>
-                                    <th>Total</th>
-                                    <th>Status</th>
+                                    <th>
+                                        No. Invoice
+                                    </th>
+
+                                    <th>
+                                        Pelanggan
+                                    </th>
+
+                                    <th>
+                                        Total
+                                    </th>
+
+                                    <th>
+                                        Status
+                                    </th>
+
+                                    <th class="text-center">
+                                        Aksi
+                                    </th>
 
                                 </tr>
 
                             </thead>
 
+
                             <tbody>
 
-                                <tr>
+                                @forelse ($latestOrders as $order)
 
-                                    <td>
-                                        INV-260921-001
-                                    </td>
+                                    @php
 
-                                    <td>
-                                        Budi
-                                    </td>
+                                        $total =
+                                            (float) $order->total;
 
-                                    <td>
-                                        Rp 250.000
-                                    </td>
+                                        $paid =
+                                            (float) $order->paid;
 
-                                    <td>
-                                        <span class="badge bg-success">
-                                            Lunas
-                                        </span>
-                                    </td>
+                                    @endphp
 
-                                </tr>
 
-                                <tr>
+                                    <tr>
 
-                                    <td>
-                                        INV-260921-002
-                                    </td>
+                                        {{-- INVOICE --}}
+                                        <td>
 
-                                    <td>
-                                        Andi
-                                    </td>
+                                            <span class="fw-semibold">
 
-                                    <td>
-                                        Rp 150.000
-                                    </td>
+                                                {{ $order->invoice_code }}
 
-                                    <td>
-                                        <span class="badge bg-warning text-dark">
-                                            DP
-                                        </span>
-                                    </td>
+                                            </span>
 
-                                </tr>
+                                        </td>
 
-                                <tr>
 
-                                    <td>
-                                        INV-260921-003
-                                    </td>
+                                        {{-- CUSTOMER --}}
+                                        <td>
 
-                                    <td>
-                                        Irfan
-                                    </td>
+                                            {{ $order->customer->name ?? '-' }}
 
-                                    <td>
-                                        Rp 350.000
-                                    </td>
+                                        </td>
 
-                                    <td>
-                                        <span class="badge bg-primary">
-                                            Proses
-                                        </span>
-                                    </td>
 
-                                </tr>
+                                        {{-- TOTAL --}}
+                                        <td>
+
+                                            Rp
+                                            {{ number_format($total, 0, ',', '.') }}
+
+                                        </td>
+
+
+                                        {{-- STATUS PEMBAYARAN --}}
+                                        <td>
+
+                                            @if ($order->status === 'Dibatalkan')
+
+                                                <span class="badge bg-danger">
+                                                    Dibatalkan
+                                                </span>
+
+                                            @elseif ($total > 0 && $paid >= $total)
+
+                                                <span class="badge bg-success">
+                                                    Lunas
+                                                </span>
+
+                                            @elseif ($paid > 0)
+
+                                                <span class="badge bg-warning text-dark">
+                                                    DP
+                                                </span>
+
+                                            @else
+
+                                                <span class="badge bg-secondary">
+                                                    Belum Bayar
+                                                </span>
+
+                                            @endif
+
+                                        </td>
+
+
+                                        {{-- DETAIL --}}
+                                        <td class="text-center">
+
+                                            <a
+                                                href="{{ route('invoice-project.show', $order) }}"
+                                                class="btn btn-sm btn-light border"
+                                                title="Lihat Invoice"
+                                            >
+
+                                                <i class="bi bi-eye"></i>
+
+                                            </a>
+
+                                        </td>
+
+                                    </tr>
+
+                                @empty
+
+                                    <tr>
+
+                                        <td
+                                            colspan="5"
+                                            class="text-center py-4 text-muted"
+                                        >
+
+                                            <i class="bi bi-inbox fs-3 d-block mb-2"></i>
+
+                                            Belum ada transaksi.
+
+                                        </td>
+
+                                    </tr>
+
+                                @endforelse
 
                             </tbody>
 
@@ -385,60 +515,170 @@
         </div>
 
 
-        {{-- STOK --}}
+        {{-- =================================================
+            STOK MENIPIS
+        ================================================== --}}
+
         <div class="col-lg-4">
 
             <div class="card border-0 shadow-sm">
 
                 <div class="card-body">
 
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+
+                        <h6 class="fw-bold mb-0">
+
+                            <i class="bi bi-exclamation-triangle text-danger me-1"></i>
+
+                            Stok Menipis
+
+                        </h6>
+
+                        <small class="text-muted">
+                            ≤ {{ $lowStockLimit }}
+                        </small>
+
+                    </div>
+
+
+                    @forelse ($lowStockProducts as $product)
+
+                        <div class="border rounded p-3 mb-2">
+
+                            <div class="d-flex justify-content-between align-items-center">
+
+                                <div>
+
+                                    <strong>
+                                        {{ $product->name }}
+                                    </strong>
+
+                                    <br>
+
+                                    <small class="text-muted">
+                                        Stok tersisa
+                                    </small>
+
+                                </div>
+
+
+                                @if ($product->stock <= 0)
+
+                                    <span class="badge bg-danger">
+                                        Habis
+                                    </span>
+
+                                @elseif ($product->stock <= 3)
+
+                                    <span class="badge bg-danger">
+                                        {{ number_format($product->stock, 0, ',', '.') }}
+                                    </span>
+
+                                @else
+
+                                    <span class="badge bg-warning text-dark">
+                                        {{ number_format($product->stock, 0, ',', '.') }}
+                                    </span>
+
+                                @endif
+
+                            </div>
+
+                        </div>
+
+                    @empty
+
+                        <div class="text-center text-muted py-4">
+
+                            <i class="bi bi-check-circle text-success fs-3 d-block mb-2"></i>
+
+                            Semua stok masih aman.
+
+                        </div>
+
+                    @endforelse
+
+
+                    <a
+                        href="{{ route('products.index') }}"
+                        class="btn btn-sm btn-outline-primary w-100 mt-2"
+                    >
+
+                        <i class="bi bi-box-seam me-1"></i>
+
+                        Kelola Stok
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            {{-- =================================================
+                PRODUK TERLARIS
+            ================================================== --}}
+
+            <div class="card border-0 shadow-sm mt-4">
+
+                <div class="card-body">
+
                     <h6 class="fw-bold mb-3">
-                        Stok Menipis
+
+                        <i class="bi bi-trophy me-1"></i>
+
+                        Produk Terlaris
+                        <small class="text-muted">
+                            (bulan ini)
+                        </small>
+
                     </h6>
 
-                    <div class="border rounded p-3 mb-2">
 
-                        <div class="d-flex justify-content-between">
+                    @forelse ($topProducts as $index => $product)
 
-                            <div>
-                                <strong>Banner</strong>
+                        <div
+                            class="d-flex justify-content-between align-items-center py-2
+                            {{ !$loop->last ? 'border-bottom' : '' }}"
+                        >
 
-                                <br>
+                            <div class="d-flex align-items-center">
 
-                                <small class="text-muted">
-                                    Stok tersisa
-                                </small>
+                                <span
+                                    class="text-muted me-3"
+                                    style="width: 18px;"
+                                >
+                                    {{ $index + 1 }}
+                                </span>
+
+
+                                <strong>
+                                    {{ $product->name }}
+                                </strong>
+
                             </div>
 
-                            <span class="badge bg-danger">
-                                3
+
+                            <span class="text-muted small">
+
+                                {{ number_format((float) $product->sold_quantity, 0, ',', '.') }}
+
+                                Terjual
+
                             </span>
 
                         </div>
 
-                    </div>
+                    @empty
 
-                    <div class="border rounded p-3">
+                        <div class="text-center text-muted py-3">
 
-                        <div class="d-flex justify-content-between">
-
-                            <div>
-                                <strong>Kertas A3</strong>
-
-                                <br>
-
-                                <small class="text-muted">
-                                    Stok tersisa
-                                </small>
-                            </div>
-
-                            <span class="badge bg-warning text-dark">
-                                5
-                            </span>
+                            Belum ada data penjualan bulan ini.
 
                         </div>
 
-                    </div>
+                    @endforelse
 
                 </div>
 
@@ -447,5 +687,7 @@
         </div>
 
     </div>
+
+</div>
 
 @endsection
